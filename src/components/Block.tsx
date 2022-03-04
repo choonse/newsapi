@@ -76,9 +76,10 @@ type BlockProps = {
     onShowEditModal?:(e: React.MouseEvent<HTMLButtonElement>)=>void
 }
 
+//기사 블럭
 const Block = ({id, article, bookmark, edit, removeBookmark, onShowEditModal}:BlockProps) => {
 
-    const {title, description, url, urlToImage}:{title:string, description:string, url:string, urlToImage:string} = article;
+    const {title, description, url, urlToImage, author, publishedAt, source}:{title:string, description:string, url:string, urlToImage:string, author:string, publishedAt:string, source:any} = article;
 
     return(
         <DetailBlock>
@@ -96,6 +97,7 @@ const Block = ({id, article, bookmark, edit, removeBookmark, onShowEditModal}:Bl
                     </a>
                 </h2>
                 <p>{description}</p>
+                <p>{author} / {new Date(publishedAt).toLocaleDateString()} / {source.name}</p> 
                 {edit?
                 <>
                     <span className="remove" id={url} onClick={removeBookmark}>Remove</span>

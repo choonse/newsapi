@@ -129,6 +129,7 @@ type HeaderProps ={
     mark?:string
 }
 
+//헤더
 const Header = ({scandata, page, bookmark, mark}:HeaderProps) => {
 
     const dispatch = useDispatch();
@@ -138,10 +139,8 @@ const Header = ({scandata, page, bookmark, mark}:HeaderProps) => {
         user:user
     }));
 
+    //검색버튼클릭(검색)
     const onclick = async () => {
-
-        // const page:number = 1;
-
         if(scandata){
            await Promise.all([dispatch(getArticle({scandata, page})), dispatch(setNum(page))]);
         }else{
@@ -149,9 +148,8 @@ const Header = ({scandata, page, bookmark, mark}:HeaderProps) => {
         }
     }
 
+    //검색문자입력(redux)
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        // setScandata(e.target.value);
-
         const {value, name} = e.target;
         dispatch(
             changeField({
@@ -161,16 +159,19 @@ const Header = ({scandata, page, bookmark, mark}:HeaderProps) => {
         );
     }
 
+    //enter키 검색
     const onKeyDown = (e:React.KeyboardEvent<HTMLDivElement>) => {
         if(e.key==='Enter'){
             dispatch(getArticle({scandata}));
         }
     }
 
+    //검색
     const onConfirm = () => {
         
         const {id, pwd} = user;
 
+        //입력체크
         if(id&&pwd){
             dispatch(login({id, pwd}));
         }else if(id){
@@ -186,16 +187,18 @@ const Header = ({scandata, page, bookmark, mark}:HeaderProps) => {
         setVisible(false);
     }
 
+    //로그인 화면 닫기
     const onCancel = () => {
         dispatch(clearData());
         setVisible(false);
     }
 
+    //로그인 화면 표시
     const showLoginModal = () => {
-        
         setVisible(true);
     }
 
+    //로그아웃 작업
     const logout = () => {
         dispatch(setLogout());
     }
@@ -210,18 +213,26 @@ const Header = ({scandata, page, bookmark, mark}:HeaderProps) => {
             {!!user&&user.login?
             <div className="loggedin">
             <span> Hi! {user.id} </span>
+            {mark?
+            <span className="bookmark"> <Link to="/" style={{ textDecoration: 'none',color:'white' }}>Home</Link></span>
+            :
             <span className="bookmark"> <Link to="/bookmark" style={{ textDecoration: 'none',color:'white' }}>Bookmark</Link><span className="count">{!!bookmark&&bookmark.length?bookmark.length:0}</span> </span>
+            }
             <StyledButton onClick={logout} className="clickable">LOGOUT</StyledButton>
             </div>
             :
             <StyledButton onClick={showLoginModal} className="clickable">LOGIN</StyledButton>
             }
             </div>
-        <div className="scanbox">        
-        <StyledInput onChange={onChange} onKeyDown={onKeyDown} name={'scandata'} value={scandata}/>
-        <StyledButton onClick={onclick} >Find</StyledButton>
-        </div>
-
+            {mark?    
+            '':
+                <>
+                <div className="scanbox">        
+                <StyledInput onChange={onChange} onKeyDown={onKeyDown} name={'scandata'} value={scandata}/>
+                <StyledButton onClick={onclick} >Find</StyledButton>
+                </div>
+                </>
+            }
         <LoginModal visible={visible} onCancel={onCancel} onConfirm={onConfirm} />
         </Frameset>  
     )

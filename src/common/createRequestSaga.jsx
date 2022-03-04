@@ -6,6 +6,7 @@ export const createRequestActionTypes = type => {
     return [type, SUCCESS, FAILURE];
 };
 
+//saga success, failure 처리
 export default function createRequestSaga(type, request){
 
     const SUCCESS = `${type}_SUCCESS`;

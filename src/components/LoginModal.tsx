@@ -78,10 +78,12 @@ type Login={
     onConfirm:()=>void,
 }
 
+//로그인 모달
 const LoginModal = ({visible, onCancel, onConfirm}:Login) => {
 
     const dispatch = useDispatch();
 
+    //아이디,비번 입력(redux)
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {    
         const {value, name} = e.target;
         dispatch(
@@ -92,6 +94,7 @@ const LoginModal = ({visible, onCancel, onConfirm}:Login) => {
         );
     }
 
+    //enter로 로그인
     const onKeyDown = (e:React.KeyboardEvent<HTMLDivElement>) => {
         if(e.key==='Enter'){
             onConfirm();

@@ -25,15 +25,18 @@ type ListProps = {
     bookmark:any,
 }
 
+//표시 리스트
 const List = ({data, scandata, page, bookmark}:ListProps) =>{ 
 
     const dispatch = useDispatch();
 
+    //무한스크롤 작업 관련
     const handleScroll = () => {
         const scrollHeight = document.documentElement.scrollHeight;
         const scrollTop = document.documentElement.scrollTop;
         const clientHeight = document.documentElement.clientHeight;
 
+        //화면 하단 도달 시 추가 데이터 로딩
         if(scrollTop + clientHeight >= scrollHeight ) {
             dispatch(addArticle({scandata, page}));
         }
@@ -45,15 +48,16 @@ const List = ({data, scandata, page, bookmark}:ListProps) =>{
     }
     })
 
+    //북마크 작업
     const onBookmark = (e:any) => {
-        
         let array = [];
-
+        
         if(bookmark){
             array = bookmark.concat(data.articles[e.target.id]);
         }else{
             array = [].concat(data.articles[e.target.id]);
         }
+
         dispatch(setBookmark(array));
         localStorage.setItem('bookmark',JSON.stringify(array));
     }
@@ -62,8 +66,11 @@ const List = ({data, scandata, page, bookmark}:ListProps) =>{
         return null;
     }
     
-    const article = [...data.articles].sort((a:any, b:any) => a.publishedAt > b.publishedAt ? -1 : 1)    //정렬
+    //정렬작업(최신순)
+    const article = [...data.articles].sort((a:any, b:any) => a.publishedAt > b.publishedAt ? -1 : 1) 
+    
     let cnt:number = 0;
+    
     return(<>
         <ListBlock>
         {article.map((article:any)=>(

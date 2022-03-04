@@ -94,6 +94,7 @@ type EditProps = {
     edit:any
 }
 
+// 북마크 내용 수정 모달
 const EditModal = ({visible, onChange, onConfirm, onCancel, edit}:EditProps) => {
     
     if(!visible) return null;
