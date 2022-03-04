@@ -46,7 +46,6 @@ const article = handleActions(
         [GET_ARTICLE_SUCCESS]:(state,{payload:data})=>({
             ...state,
             data,
-            page:state.page+1
         }),
         [GET_ARTICLE_FAILURE]:(state)=>({
             ...state,

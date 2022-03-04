@@ -166,7 +166,7 @@ const Header = ({scandata, page, bookmark, mark}:HeaderProps) => {
         }
     }
 
-    //검색
+    //로그인
     const onConfirm = () => {
         
         const {id, pwd} = user;
