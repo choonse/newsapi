@@ -21,9 +21,12 @@
 <br/>
 <b>3.북마크기능</b><br/>
 - 북마크 추가,삭제,수정 기능<br/>
-- 재접속시 내용 유지(local Storage 사용, 로그아웃해도 북마크 데이터는 유지)<br/>
-
+- 재접속시 내용 유지(local Storage 사용, 로그아웃해도 북마크 데이터는 유지)<br/><br/>
+ 
 ![이미지 0](https://user-images.githubusercontent.com/86334732/156778236-64aa56b2-957d-4e0f-97d6-a2e8bacad50f.png)
+
 ![이미지 1](https://user-images.githubusercontent.com/86334732/156778245-24ec4d04-0e30-4fa9-90d2-10c918129424.png)
+
 ![이미지 2](https://user-images.githubusercontent.com/86334732/156778248-315ff272-e312-44e4-b43f-ed01cd9cee72.png)
+
 ![이미지 3](https://user-images.githubusercontent.com/86334732/156778255-2ddc5e9b-0c1a-4657-83d6-7334fd512c58.png)
