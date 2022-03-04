@@ -38,6 +38,7 @@ const List = ({data, scandata, page, bookmark}:ListProps) =>{
 
         //화면 하단 도달 시 추가 데이터 로딩
         if(scrollTop + clientHeight >= scrollHeight ) {
+            
             dispatch(addArticle({scandata, page}));
         }
     }
